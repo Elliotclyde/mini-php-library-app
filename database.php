@@ -51,4 +51,25 @@ function createBook($title,$author,$slug){
 }
 
 
+function updateBook($id, $title,$author,$slug){
+  global $conn;
+  $conn->query("UPDATE `books` SET `title`='" . $title ."',`author`='" . $author ."',`slug`='" .$slug ."'  WHERE  `id`=" . $id .";");
+  $databaseResult = $conn->query("SELECT * FROM books WHERE `id`= " . $id ." ;");
+  
+  if ($databaseResult->num_rows > 0) {
+    return $databaseResult->fetch_assoc();
+  }else{
+      return null;
+  }
+}
+
+function deleteBook($id){
+  global $conn;
+  $databaseResult = $conn->query("DELETE FROM `books` WHERE `id`=" . $id .";");
+  return $databaseResult;
+}
+
+
+
+
 

@@ -15,14 +15,20 @@ include "database.php";
 include "utility.php";
 
 
+
 $books = getAllBooks();
 for($i = 0; $i < count($books); $i++)
     {
     ?>
     
-    <li><a href="book.php?slug=<?= spaceToDash($books[$i]["slug"]) ?>"><?= $books[$i]["title"] ?></a></li>
+    <li>
+        <a href="book.php?slug=<?= spaceToDash($books[$i]["slug"]) ?>"><?= $books[$i]["title"] ?></a>
+        <a href="edit.php?slug=<?= spaceToDash($books[$i]["slug"]) ?>">Edit</a>
+        <button class="delete-button" data-book-id="<?= $books[$i]["id"]?>">Delete</button>
+    </li>
     <?php
     }
 ?></ul>
+<script src="script.js"></script>
 </body>
 </html>
